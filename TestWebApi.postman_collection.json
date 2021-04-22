@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "f23e6ce6-2e6d-4a61-9f35-08605e4c147c",
+		"name": "TestWebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET PRODUCTS BY NAME",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/TestWebItems/product/Laptop",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"TestWebItems",
+						"product",
+						"Laptop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSERT PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Laptop\",\r\n    \"prezzo\" : 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/TestWebItems/product/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"TestWebItems",
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
