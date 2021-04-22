@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace TestWebApi.Models
 {
+    /// <summary>
+    /// Classe che modella l'informazione salvata nel DB
+    /// </summary>
     public class TestWebItem
     {
         public long Id { get; set; }

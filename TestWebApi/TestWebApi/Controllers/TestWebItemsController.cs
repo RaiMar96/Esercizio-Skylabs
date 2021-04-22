@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using TestWebApi.Models;
+using TestWebApi.Services;
 
 namespace TestWebApi.Controllers
 {
@@ -14,11 +12,11 @@ namespace TestWebApi.Controllers
     [ApiController]
     public class TestWebItemsController : Controller
     {
-        private readonly TestContext _context;
+        private readonly ICommunicationGateway _communicationService;
 
-        public TestWebItemsController(TestContext context)
+        public TestWebItemsController(ICommunicationGateway CommGtw)
         {
-            _context = context;
+            _communicationService = CommGtw;
         }
 
         /// <summary>
@@ -29,15 +27,12 @@ namespace TestWebApi.Controllers
         [HttpPost("product")]
         public async Task<IActionResult> PostItem(TestWebItem testWebItem)
         {
-            try { 
-                _context.Add(testWebItem);
-                var testWebItemRes = await _context.SaveChangesAsync();
-                return Ok("Oggetto Creato");
-            } 
-            catch(Exception)
+           var res = await _communicationService.CreateItemAsync(testWebItem);
+            if(res == 1)
             {
-                return BadRequest("Errore Durante L'inserimento");
+                return Ok("Oggetto Creato");
             }
+            return BadRequest("Errore Durante La creazione");
         }
 
         /// <summary>
@@ -53,10 +48,9 @@ namespace TestWebApi.Controllers
                 return NotFound();
             }
 
-            var testWebItem = await _context.TestItems
-                .Where(m => Regex.IsMatch(m.Nome, name, RegexOptions.IgnoreCase))
-                .ToListAsync();
-            if (testWebItem == null)
+            var testWebItem = await _communicationService.GetItemAsync(name);
+
+            if (testWebItem.Count() == 0)
             {
                 return NotFound();
             }

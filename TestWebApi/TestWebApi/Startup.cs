@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TestWebApi.Models;
+using TestWebApi.Services;
 
 namespace TestWebApi
 {
@@ -28,6 +29,7 @@ namespace TestWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TestContext>(opt => opt.UseInMemoryDatabase("TestInMemoryDB"));
+            services.AddTransient<ICommunicationGateway, CCommunicationGateway>();
             services.AddControllers();
         }
 
