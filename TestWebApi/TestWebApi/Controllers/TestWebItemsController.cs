@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestWebApi.Models;
 using TestWebApi.Services;
@@ -25,12 +26,14 @@ namespace TestWebApi.Controllers
         /// <param name="testWebItem">Oggetto da inserire nel db composto dalla coppia nome e prezzo</param>
         /// <returns>Oggetto inserito nel Bd in caso di successo, O messaggio di errore in caso di insuccesso</returns>
         [HttpPost("product")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PostItem(TestWebItem testWebItem)
         {
            var res = await _communicationService.CreateItemAsync(testWebItem);
             if(res == 1)
             {
-                return Ok("Oggetto Creato");
+                return StatusCode(StatusCodes.Status201Created, testWebItem);
             }
             return BadRequest("Errore Durante La creazione");
         }
@@ -41,7 +44,9 @@ namespace TestWebApi.Controllers
         /// <param name="name"></param>
         /// <returns>Ritorna uno/nessuno/più elementi a seconda del risultato della query, se nessuno ritorna notFound</returns>
         [HttpGet("product/{name}")]
-        public async Task<IActionResult> GetItemByName(string name)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<TestWebItem>>> GetItemByName(string name)
         {
             if (name == null)
             {
