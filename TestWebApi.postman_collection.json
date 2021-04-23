@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:5001/api/TestWebItems/product/Laptop",
+					"raw": "https://localhost:5001/api/TestWebItems/product?name=laptop",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -20,8 +20,13 @@
 					"path": [
 						"api",
 						"TestWebItems",
-						"product",
-						"Laptop"
+						"product"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "laptop"
+						}
 					]
 				}
 			},
@@ -34,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nome\" : \"Laptop\",\r\n    \"prezzo\" : 300\r\n}",
+					"raw": "{\r\n    \"nome\" : \"laptop\",\r\n    \"prezzo\" : 300\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
