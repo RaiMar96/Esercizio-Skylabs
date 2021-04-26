@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TestWebApi.Models;
 using TestWebApi.Models.DTO;
 using TestWebApi.Services;
 
@@ -26,6 +25,8 @@ namespace TestWebApi.Controllers
         /// </summary>
         /// <param name="testWebItem">Oggetto da inserire nel db composto dalla coppia nome e prezzo</param>
         /// <returns>Oggetto inserito nel Bd in caso di successo, O messaggio di errore in caso di insuccesso</returns>
+        /// /// <response code="201">Ritorna il nuvo prodotto creato</response>
+        /// <response code="400">Se avviene un errore durante la creazione</response>
         [HttpPost("product")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -44,6 +45,8 @@ namespace TestWebApi.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns>Ritorna uno/nessuno/più elementi a seconda del risultato della query, se nessuno ritorna notFound</returns>
+        /// /// <response code="200">Ritorna la lista dei prodotti presenti che soddisfano la query</response>
+        /// <response code="404">Se l'elemento non è presente nel db</response>
         [HttpGet("product")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
