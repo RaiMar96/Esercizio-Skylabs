@@ -73,9 +73,10 @@ namespace TestWebApi
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(swagger =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                swagger.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                swagger.RoutePrefix = string.Empty;
             });
 
             app.UseEndpoints(endpoints =>
