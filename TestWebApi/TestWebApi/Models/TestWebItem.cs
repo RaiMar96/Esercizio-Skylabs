@@ -12,9 +12,5 @@ namespace TestWebApi.Models
         public string Nome { get; set; }
         [Required]
         public float Prezzo { get; set; }
-        /*
-        [Required]
-        public string CodiceProdotto { get; set; }
-        */
     }
 }

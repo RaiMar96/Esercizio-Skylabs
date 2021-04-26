@@ -8,8 +8,5 @@ namespace TestWebApi.Models.DTO
         public string Nome { get; set; }
         [Required]
         public float Prezzo { get; set; }
-        /*
-        public string CodiceProdotto { get; set; }
-        */
     }
 }
