@@ -9,6 +9,8 @@ Servizio REST con ASP.NET Core
 
 - **GET**   localhost:*{portNumber}*/api/TestWebItems/ping
 
+Sto provando altre cose
+
 Il body per la POST deve avere la struttura mostrata dal json di esempio
 
 ```json
